@@ -19,6 +19,8 @@
 
 #include "fit_convert.h"
 
+#include "rubyfit_functions.c"
+
 VALUE mRubyFit;
 VALUE cFitParser;
 VALUE cFitHandler;
@@ -31,6 +33,7 @@ VALUE cFitHandlerSessionFun;
 VALUE cFitHandlerDeviceInfoFun;
 VALUE cFitHandlerUserProfileFun;
 VALUE cFitHandlerEventFun;
+VALUE cFitHandlerBikeProfileFun;
 VALUE cFitHandlerWeightScaleInfoFun;
 static ID HANDLER_ATTR;
 /*
@@ -56,7 +59,6 @@ static VALUE fit_pos_to_rb(FIT_SINT32 pos) {
 	return rb_float_new(tmp);
 }
 
-
 static VALUE init(VALUE self, VALUE handler) {
 	cFitHandler = handler;
 	rb_ivar_set(self, HANDLER_ATTR, handler);
@@ -69,6 +71,7 @@ static VALUE init(VALUE self, VALUE handler) {
 	cFitHandlerLapFun = rb_intern("on_lap");
 	cFitHandlerRecordFun = rb_intern("on_record");
 	cFitHandlerEventFun = rb_intern("on_event");
+	cFitHandlerBikeProfileFun = rb_intern("on_bike_profile");
 	cFitHandlerDeviceInfoFun = rb_intern("on_device_info");
 	cFitHandlerUserProfileFun = rb_intern("on_user_profile");
 	cFitHandlerWeightScaleInfoFun = rb_intern("on_weight_scale_info");
@@ -262,8 +265,12 @@ static void pass_session(const FIT_SESSION_MESG *mesg) {
 		rb_hash_aset(rh, rb_str_new2("max_cadence"), UINT2NUM(mesg->max_cadence));
 	if(mesg->sport != FIT_SPORT_INVALID)
 		rb_hash_aset(rh, rb_str_new2("sport"), CHR2FIX(mesg->sport));
+  if(mesg->sport != FIT_SPORT_INVALID)
+		rb_hash_aset(rh, rb_str_new2("sport_text"), get_fit_sport(mesg->sport));
 	if(mesg->sub_sport != FIT_SUB_SPORT_INVALID)
 		rb_hash_aset(rh, rb_str_new2("sub_sport"), CHR2FIX(mesg->sub_sport));
+	if(mesg->sub_sport != FIT_SUB_SPORT_INVALID)
+		rb_hash_aset(rh, rb_str_new2("sub_sport_text"), get_fit_sub_sport(mesg->sub_sport));
 	if(mesg->event_group != FIT_UINT8_INVALID)
 		rb_hash_aset(rh, rb_str_new2("event_group"), UINT2NUM(mesg->event_group));
 	if(mesg->total_training_effect != FIT_UINT8_INVALID)
@@ -275,8 +282,8 @@ static void pass_session(const FIT_SESSION_MESG *mesg) {
 static void pass_user_profile(const FIT_USER_PROFILE_MESG *mesg) {
 	VALUE rh = rb_hash_new();
 
-        if(mesg->friendly_name != FIT_STRING_INVALID)
-	        rb_hash_aset(rh, rb_str_new2("friendly_name"), rb_str_new2(mesg->friendly_name));
+	if(mesg->friendly_name != FIT_STRING_INVALID)
+		rb_hash_aset(rh, rb_str_new2("friendly_name"), rb_str_new2(mesg->friendly_name));
 	if(mesg->message_index != FIT_MESSAGE_INDEX_INVALID)
 		rb_hash_aset(rh, rb_str_new2("message_index"), UINT2NUM(mesg->message_index));
 	if(mesg->weight != FIT_UINT16_INVALID)
@@ -322,19 +329,47 @@ static void pass_event(const FIT_EVENT_MESG *mesg) {
 
 	if(mesg->timestamp != FIT_DATE_TIME_INVALID)
 		rb_hash_aset(rh, rb_str_new2("timestamp"), UINT2NUM(mesg->timestamp + GARMIN_TIME_OFFSET));
-	if(mesg->data != FIT_UINT32_INVALID)
-                rb_hash_aset(rh, rb_str_new2("data"), UINT2NUM(mesg->data));
+	if(mesg->data != FIT_UINT32_INVALID) {
+		// rb_hash_aset(rh, rb_str_new2("data"), UINT2NUM(mesg->data));
+
+
+		// const FIT_EVENT_MESG_FIELD *data = (FIT_EVENT_MESG_FIELD *) mesg->data;
+
+		// rb_hash_aset(rh, rb_str_new2("data"), UINT2NUM(data->timestamp));
+/** */
+
+		// const FIT_WEIGHT_SCALE_MESG *weight_scale_info = (FIT_WEIGHT_SCALE_MESG *) mesg;
+		// rb_hash_aset(rh, rb_str_new2("data"), UINT2NUM(data));
+		// FitConvert_Read(&mesg->data, sizeof(mesg->data));
+  }
 	if(mesg->data16 != FIT_UINT16_INVALID)
-                rb_hash_aset(rh, rb_str_new2("data16"), UINT2NUM(mesg->data16));
+		rb_hash_aset(rh, rb_str_new2("data16"), UINT2NUM(mesg->data16));
 	if(mesg->timestamp != FIT_EVENT_INVALID)
-                rb_hash_aset(rh, rb_str_new2("event"), CHR2FIX(mesg->event));
+		rb_hash_aset(rh, rb_str_new2("event"), CHR2FIX(mesg->event));
 	if(mesg->timestamp != FIT_EVENT_TYPE_INVALID)
 		rb_hash_aset(rh, rb_str_new2("event_type"), CHR2FIX(mesg->event_type));
 	if(mesg->event_group != FIT_UINT8_INVALID)
-	        rb_hash_aset(rh, rb_str_new2("event_group"), UINT2NUM(mesg->event_group));
+		rb_hash_aset(rh, rb_str_new2("event_group"), UINT2NUM(mesg->event_group));
 
 	rb_funcall(cFitHandler, cFitHandlerEventFun, 1, rh);
 }
+
+
+static void pass_bike_profile(const FIT_BIKE_PROFILE_MESG *mesg) {
+	VALUE rh = rb_hash_new();
+
+	// if(mesg->front_gear_num != FIT_UINT8_INVALID)
+	// 	rb_hash_aset(rh, rb_str_new2("front_gear_num"), UINT2NUM(mesg->front_gear_num));
+	// if(mesg->front_gear != FIT_UINT8_INVALID)
+	// 	rb_hash_aset(rh, rb_str_new2("front_gear"), UINT2NUM(mesg->front_gear));
+	// if(mesg->rear_gear_num != FIT_UINT8_INVALID)
+	// 	rb_hash_aset(rh, rb_str_new2("rear_gear_num"), UINT2NUM(mesg->rear_gear_num));
+	// if(mesg->rear_gear != FIT_UINT8_INVALID)
+	// 	rb_hash_aset(rh, rb_str_new2("rear_gear"), UINT2NUM(mesg->rear_gear));
+
+	rb_funcall(cFitHandler, cFitHandlerBikeProfileFun, 1, rh);
+}
+
 
 static void pass_device_info(const FIT_DEVICE_INFO_MESG *mesg) {
 	VALUE rh = rb_hash_new();
@@ -345,8 +380,16 @@ static void pass_device_info(const FIT_DEVICE_INFO_MESG *mesg) {
 		rb_hash_aset(rh, rb_str_new2("serial_number"), UINT2NUM(mesg->serial_number));
 	if(mesg->manufacturer != FIT_MANUFACTURER_INVALID)
 		rb_hash_aset(rh, rb_str_new2("manufacturer"), UINT2NUM(mesg->manufacturer));
-	if(mesg->product != FIT_UINT16_INVALID)
-		rb_hash_aset(rh, rb_str_new2("product"), UINT2NUM(mesg->product));
+	if(mesg->manufacturer != FIT_MANUFACTURER_INVALID)
+		rb_hash_aset(rh, rb_str_new2("manufacturer_text"), get_fit_manufacturer(mesg->manufacturer));
+  if(mesg->product != FIT_UINT16_INVALID)
+    rb_hash_aset(rh, rb_str_new2("product"), UINT2NUM(mesg->product));
+  if(mesg->product != FIT_UINT16_INVALID)
+  	rb_hash_aset(rh, rb_str_new2("product_text"), get_fit_garmin_product(mesg->product));
+
+	if(mesg->product_name != FIT_STRING_INVALID)
+		rb_hash_aset(rh, rb_str_new2("product_name"), rb_str_new2(mesg->product_name));
+
 	if(mesg->software_version != FIT_UINT16_INVALID)
 		rb_hash_aset(rh, rb_str_new2("software_version"), UINT2NUM(mesg->software_version));
 	if(mesg->battery_voltage != FIT_UINT16_INVALID)
@@ -359,6 +402,11 @@ static void pass_device_info(const FIT_DEVICE_INFO_MESG *mesg) {
 		rb_hash_aset(rh, rb_str_new2("hardware_version"), UINT2NUM(mesg->hardware_version));
 	if(mesg->battery_status != FIT_BATTERY_STATUS_INVALID)
 		rb_hash_aset(rh, rb_str_new2("battery_status"), UINT2NUM(mesg->battery_status));
+	if(mesg->battery_status != FIT_BATTERY_STATUS_INVALID)
+		rb_hash_aset(rh, rb_str_new2("battery_status_text"), get_fit_battery_status(mesg->battery_status));
+
+	// if(mesg->ant_device_number != FIT_UINT16_INVALID)
+	// 	rb_hash_aset(rh, rb_str_new2("ant_device_number"), INT2NUM(mesg->ant_device_number));
 
 	rb_funcall(cFitHandler, cFitHandlerDeviceInfoFun, 1, rh);
 }
@@ -472,6 +520,12 @@ static VALUE parse(VALUE self, VALUE original_str) {
 						case FIT_MESG_NUM_EVENT: {
 							const FIT_EVENT_MESG *event = (FIT_EVENT_MESG *) mesg;
 							pass_event(event);
+							break;
+						}
+
+						case FIT_MESG_NUM_BIKE_PROFILE: {
+							const FIT_BIKE_PROFILE_MESG *bike_profile = (FIT_BIKE_PROFILE_MESG *) mesg;
+							pass_bike_profile(bike_profile);
 							break;
 						}
 
