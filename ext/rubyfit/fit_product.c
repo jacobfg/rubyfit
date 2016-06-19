@@ -17,23 +17,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-#if !defined(FIT_RAM_H)
-#define FIT_RAM_H
-
 #include "fit_product.h"
+// #include "fit_example.c"
 
-#if defined(FIT_RAM_INCLUDE)
-
-///////////////////////////////////////////////////////////////////////////////
-// Public Function Prototypes
-///////////////////////////////////////////////////////////////////////////////
-
-FIT_RAM_FILE FitRAM_LookupFile(FIT_FILE file);
-FIT_UINT32 FitRAM_GetFileSize(FIT_RAM_FILE file);
-void FitRAM_FileReadBytes(FIT_RAM_FILE file, FIT_UINT16 file_index, FIT_UINT32 file_offset, void *data, FIT_UINT32 data_size);
-void FitRAM_FileWriteBytes(FIT_RAM_FILE file, FIT_UINT16 file_index, FIT_UINT32 file_offset, const void *data, FIT_UINT32 data_size);
-void FitRAM_FileWriteMesg(FIT_RAM_FILE file, FIT_UINT16 file_index, FIT_UINT16 mesg_num, const void *mesg_data, FIT_BOOL restore_fields);
-
-#endif // defined(FIT_RAM_INCLUDE)
-
-#endif // !defined(FIT_RAM_H)

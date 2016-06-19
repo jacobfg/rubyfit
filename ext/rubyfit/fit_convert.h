@@ -20,7 +20,7 @@
 #if !defined(FIT_CONVERT_H)
 #define FIT_CONVERT_H
 
-#include "fit_example.h"
+#include "fit_product.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////
