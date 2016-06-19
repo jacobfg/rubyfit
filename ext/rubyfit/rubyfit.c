@@ -387,8 +387,8 @@ static void pass_device_info(const FIT_DEVICE_INFO_MESG *mesg) {
   if(mesg->product != FIT_UINT16_INVALID)
   	rb_hash_aset(rh, rb_str_new2("product_text"), get_fit_garmin_product(mesg->product));
 
-	if(mesg->product_name != FIT_STRING_INVALID)
-		rb_hash_aset(rh, rb_str_new2("product_name"), rb_str_new2(mesg->product_name));
+	// if(mesg->product_name != FIT_STRING_INVALID)
+	// 	rb_hash_aset(rh, rb_str_new2("product_name"), rb_str_new2(mesg->product_name));
 
 	if(mesg->software_version != FIT_UINT16_INVALID)
 		rb_hash_aset(rh, rb_str_new2("software_version"), UINT2NUM(mesg->software_version));
