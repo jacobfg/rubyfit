@@ -220,6 +220,7 @@ static const struct
    {"FR225", 2153},
    {"FR630", 2156},
    {"FR230", 2157},
+   {"FR735XT", 2158},
    {"VIVO_ACTIVE_APAC", 2160},
    {"VECTOR_2", 2161},
    {"VECTOR_2S", 2162},
