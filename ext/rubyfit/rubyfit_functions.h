@@ -353,6 +353,7 @@ static const struct
    {"KITESURFING", 44},
    {"TACTICAL", 45},
    {"JUMPMASTER", 46},
+   {"BOXING", 47},
 };
 
 static const struct
