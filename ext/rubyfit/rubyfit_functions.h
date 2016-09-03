@@ -102,6 +102,7 @@ static const struct
    {"BODY_BIKE_SMART", 101},
    {"PRAXISWORKS", 102},
    {"COSINUSS", 105},
+   {"FITCARE", 106},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -117,6 +118,7 @@ static const struct
    {"SPIVI", 271},
    {"MIO_MAGELLAN", 272},
    {"EVESPORTS", 273},
+   {"SENSITIVUS_GAUGE", 274},
    {"ACTIGRAPHCORP", 5759},
 };
 
@@ -242,13 +244,19 @@ static const struct
    {"VARIA_REMOTE", 2276},
    {"HRM4_RUN", 2327},
    {"VIVO_ACTIVE_HR", 2337},
+   {"VIVO_SMART_GPS_HR", 2347},
    {"VIVO_SMART_HR", 2348},
+   {"VIVO_MOVE", 2368},
    {"VARIA_VISION", 2398},
    {"VIVO_FIT3", 2406},
    {"FENIX3_HR", 2413},
    {"INDEX_SMART_SCALE", 2429},
    {"FR235", 2431},
+   {"OREGON7XX", 2441},
+   {"RINO7XX", 2444},
    {"NAUTIX", 2496},
+   {"EDGE_820", 2530},
+   {"EDGE_EXPLORE_820", 2531},
    {"EDGE_REMOTE", 10014},
    {"TRAINING_CENTER", 20119},
    {"CONNECTIQ_SIMULATOR", 65531},
@@ -354,6 +362,7 @@ static const struct
    {"TACTICAL", 45},
    {"JUMPMASTER", 46},
    {"BOXING", 47},
+   {"FLOOR_CLIMBING", 48},
 };
 
 static const struct
@@ -363,6 +372,8 @@ static const struct
 } rubyfit_fit_sub_sport[] =
 {
    {"GENERIC", 0},
+   {"NAVIGATE", 50},
+   {"TRACK_ME", 51},
    {"ALL", 254},
 };
 
