@@ -103,6 +103,8 @@ static const struct
    {"PRAXISWORKS", 102},
    {"COSINUSS", 105},
    {"FITCARE", 106},
+   {"MAGENE", 107},
+   {"GIANT_MANUFACTURING_CO", 108},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -119,6 +121,8 @@ static const struct
    {"MIO_MAGELLAN", 272},
    {"EVESPORTS", 273},
    {"SENSITIVUS_GAUGE", 274},
+   {"PODOON", 275},
+   {"LIFE_TIME_FITNESS", 276},
    {"ACTIGRAPHCORP", 5759},
 };
 
@@ -374,6 +378,7 @@ static const struct
    {"GENERIC", 0},
    {"NAVIGATE", 50},
    {"TRACK_ME", 51},
+   {"MAP", 52},
    {"ALL", 254},
 };
 
