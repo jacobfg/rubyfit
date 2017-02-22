@@ -105,6 +105,7 @@ static const struct
    {"FITCARE", 106},
    {"MAGENE", 107},
    {"GIANT_MANUFACTURING_CO", 108},
+   {"SALUTRON", 110},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
