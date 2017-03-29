@@ -261,6 +261,7 @@ static const struct
    {"RINO7XX", 2444},
    {"NAUTIX", 2496},
    {"EDGE_820", 2530},
+   {"FENIX5", 2697},
    {"EDGE_EXPLORE_820", 2531},
    {"EDGE_REMOTE", 10014},
    {"TRAINING_CENTER", 20119},
