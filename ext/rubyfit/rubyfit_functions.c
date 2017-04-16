@@ -25,7 +25,7 @@ static VALUE get_fit_garmin_product(FIT_GARMIN_PRODUCT id) {
     }
   }
   return UINT2NUM(id);
-  // return rb_str_new2("UNKNOWN");
+  //  return rb_str_new2("UNKNOWN");
 }
 
 static VALUE get_fit_antplus_device_type(FIT_ANTPLUS_DEVICE_TYPE id) {
