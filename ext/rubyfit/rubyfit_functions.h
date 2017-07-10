@@ -108,6 +108,7 @@ static const struct
    {"SALUTRON", 110},
    {"TECHNOGYM", 111},
    {"BRYTON_SENSORS", 112},
+   {"LATITUDE_LIMITED", 113},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -126,6 +127,7 @@ static const struct
    {"SENSITIVUS_GAUGE", 274},
    {"PODOON", 275},
    {"LIFE_TIME_FITNESS", 276},
+   {"MINOURA", 278},
    {"ACTIGRAPHCORP", 5759},
 };
 
