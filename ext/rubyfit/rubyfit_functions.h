@@ -109,6 +109,11 @@ static const struct
    {"TECHNOGYM", 111},
    {"BRYTON_SENSORS", 112},
    {"LATITUDE_LIMITED", 113},
+   {"SOARING_TECHNOLOGY", 114},
+   {"IGPSPORT", 115},
+   {"THINKRIDER", 116},
+   {"GOPHER_SPORT", 117},
+   {"WATERROWER", 118},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -128,6 +133,15 @@ static const struct
    {"PODOON", 275},
    {"LIFE_TIME_FITNESS", 276},
    {"MINOURA", 278},
+   {"CYCLIQ", 279},
+   {"LUXOTTICA", 280},
+   {"TRAINER_ROAD", 281},
+   {"THE_SUFFERFEST", 282},
+   {"FULLSPEEDAHEAD", 283},
+   {"VIRTUALTRAINING", 284},
+   {"FEEDBACKSPORTS", 285},
+   {"OMATA", 286},
+   {"VDO", 287},
    {"ACTIGRAPHCORP", 5759},
 };
 
@@ -393,6 +407,7 @@ static const struct
    {"NAVIGATE", 50},
    {"TRACK_ME", 51},
    {"MAP", 52},
+   {"VIRTUAL_ACTIVITY", 58},
    {"ALL", 254},
 };
 
