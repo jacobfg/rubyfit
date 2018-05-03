@@ -114,6 +114,10 @@ static const struct
    {"THINKRIDER", 116},
    {"GOPHER_SPORT", 117},
    {"WATERROWER", 118},
+   {"ORANGETHEORY", 119},
+   {"INPEAK", 120},
+   {"KINETIC", 121},
+   {"JOHNSON_HEALTH_TECH", 122},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -142,6 +146,12 @@ static const struct
    {"FEEDBACKSPORTS", 285},
    {"OMATA", 286},
    {"VDO", 287},
+   {"MAGNETICDAYS", 288},
+   {"HAMMERHEAD", 289},
+   {"KINETIC_BY_KURT", 290},
+   {"SHAPELOG", 291},
+   {"DABUZIDUO", 292},
+   {"JETBLACK", 293},
    {"ACTIGRAPHCORP", 5759},
 };
 
@@ -404,6 +414,7 @@ static const struct
 } rubyfit_fit_sub_sport[] =
 {
    {"GENERIC", 0},
+   {"CHALLENGE", 24},
    {"NAVIGATE", 50},
    {"TRACK_ME", 51},
    {"MAP", 52},
