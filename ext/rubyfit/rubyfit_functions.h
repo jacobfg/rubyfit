@@ -118,6 +118,8 @@ static const struct
    {"INPEAK", 120},
    {"KINETIC", 121},
    {"JOHNSON_HEALTH_TECH", 122},
+   {"POLAR_ELECTRO", 123},
+   {"SEESENSE", 124},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -152,6 +154,7 @@ static const struct
    {"SHAPELOG", 291},
    {"DABUZIDUO", 292},
    {"JETBLACK", 293},
+   {"COROS", 294},
    {"ACTIGRAPHCORP", 5759},
 };
 
