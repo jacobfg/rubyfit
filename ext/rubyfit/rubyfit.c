@@ -134,6 +134,21 @@ static void pass_record(const FIT_RECORD_MESG *mesg) {
 	if(mesg->temperature != FIT_SINT8_INVALID)
 		rb_hash_aset(rh, rb_str_new2("temperature"), INT2FIX(mesg->temperature));
 
+	if(mesg->gps_accuracy != FIT_UINT8_INVALID)
+		rb_hash_aset(rh, rb_str_new2("gps_accuracy"), UINT2NUM(mesg->gps_accuracy));
+
+	if(mesg->left_torque_effectiveness != FIT_UINT8_INVALID)
+		rb_hash_aset(rh, rb_str_new2("left_torque_effectiveness"), UINT2NUM(mesg->left_torque_effectiveness));
+	if(mesg->right_torque_effectiveness != FIT_UINT8_INVALID)
+		rb_hash_aset(rh, rb_str_new2("right_torque_effectiveness"), UINT2NUM(mesg->right_torque_effectiveness));
+	if(mesg->left_pedal_smoothness != FIT_UINT8_INVALID)
+		rb_hash_aset(rh, rb_str_new2("left_pedal_smoothness"), UINT2NUM(mesg->left_pedal_smoothness));
+	if(mesg->right_pedal_smoothness != FIT_UINT8_INVALID)
+		rb_hash_aset(rh, rb_str_new2("right_pedal_smoothness"), UINT2NUM(mesg->right_pedal_smoothness));
+
+  if(mesg->left_right_balance != FIT_LEFT_RIGHT_BALANCE_INVALID)
+	  rb_hash_aset(rh, rb_str_new2("left_right_balance"), UINT2NUM(mesg->left_right_balance) & 0b01111111);
+
 	rb_funcall(cFitHandler, cFitHandlerRecordFun, 1, rh);
 }
 
@@ -405,8 +420,8 @@ static void pass_device_info(const FIT_DEVICE_INFO_MESG *mesg) {
 	if(mesg->battery_status != FIT_BATTERY_STATUS_INVALID)
 		rb_hash_aset(rh, rb_str_new2("battery_status_text"), get_fit_battery_status(mesg->battery_status));
 
-	// if(mesg->ant_device_number != FIT_UINT16_INVALID)
-	// 	rb_hash_aset(rh, rb_str_new2("ant_device_number"), INT2NUM(mesg->ant_device_number));
+	if(mesg->ant_device_number != FIT_UINT16_INVALID)
+		rb_hash_aset(rh, rb_str_new2("ant_device_number"), INT2NUM(mesg->ant_device_number));
 
 	rb_funcall(cFitHandler, cFitHandlerDeviceInfoFun, 1, rh);
 }
