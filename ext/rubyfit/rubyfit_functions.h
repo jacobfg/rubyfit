@@ -316,6 +316,7 @@ static const struct
    {"APPROACH_S60", 2656},
    {"VIRB_360", 2687},
    {"FR935", 2691},
+   {"FR945", 3113},
    {"FENIX5", 2697},
    {"VIVOACTIVE3", 2700},
    {"FORETREX_601_701", 2769},
@@ -464,4 +465,3 @@ static const struct
    {"VIRTUAL_ACTIVITY", 58},
    {"ALL", 254},
 };
-
