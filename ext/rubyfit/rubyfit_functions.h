@@ -163,6 +163,7 @@ static const struct
    {"VELOSENSE", 296},
    {"CYCLIGENTINC", 297},
    {"TRAILFORKS", 298},
+   {"MAHLE_EBIKEMOTION", 299},
    {"ACTIGRAPHCORP", 5759},
 };
 
@@ -341,6 +342,7 @@ static const struct
    {"FENIX5_PLUS", 3110},
    {"FENIX5X_PLUS", 3111},
    {"EDGE_520_PLUS", 3112},
+   {"EDGE530", 3121},
    {"APPROACH_S40", 3314},
    {"EDGE_REMOTE", 10014},
    {"TRAINING_CENTER", 20119},
@@ -465,3 +467,4 @@ static const struct
    {"VIRTUAL_ACTIVITY", 58},
    {"ALL", 254},
 };
+
