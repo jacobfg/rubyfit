@@ -124,6 +124,9 @@ static const struct
    {"IQSQUARE", 126},
    {"LEOMO", 127},
    {"IFIT_COM", 128},
+   {"COROS_BYTE", 129},
+   {"VERSA_DESIGN", 130},
+   {"CHILEAF", 131},
    {"DEVELOPMENT", 255},
    {"HEALTHANDLIFE", 257},
    {"LEZYNE", 258},
@@ -164,6 +167,7 @@ static const struct
    {"CYCLIGENTINC", 297},
    {"TRAILFORKS", 298},
    {"MAHLE_EBIKEMOTION", 299},
+   {"NURVV", 300},
    {"ACTIGRAPHCORP", 5759},
 };
 
